@@ -1,7 +1,7 @@
 name: Build and Push
 on:
   push
-  
+
 jobs:
   build:
     name: Build and Push
@@ -28,4 +28,4 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: mohmadhabib/webdis-summitdb
+          tags: mohmadhabib/webdis-summitdb:latest
