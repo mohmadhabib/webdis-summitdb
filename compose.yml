@@ -1,0 +1,14 @@
+services:
+  webdis-summitdb:
+    container_name: webdis-summitdb
+    #image: mohmadhabib/webdis-summitdb
+    image: ghcr.io/mohmadhabib/webdis-summitdb
+    build: ./
+    restart: unless-stopped
+    ports:
+      - "7379:7379"
+    environment:
+      # For SummitDB as Backend
+      LOCAL_SUMMITDB: true  
+      # For Redis as Backend
+      #LOCAL_REDIS: true  
