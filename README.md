@@ -32,14 +32,34 @@ Run The Image
 ```bash
 # Run Webdis Server With SummitDB as Provider using ENVIROMENT VARIABLE LOCAL_SUMMITDB
 docker run -it --rm --name webdis-summitdb -p 7379:7379 -e LOCAL_SUMMITDB=true ghcr.io/mohmadhabib/webdis
-
-# OR Use Local Redis Server Instead of SummitDB
-docker run -it --rm --name webdis-summitdb -p 7379:7379 ghcr.io/mohmadhabib/webdis # LOCAL_REDIS is true By Default
-# OR
-docker run -it --rm --name webdis-summitdb -p 7379:7379 -e LOCAL_REDIS=true ghcr.io/mohmadhabib/webdis
-
 ```
 
+```bash
+# Run Webdis Server With SummitDB With Presistance Data (Write To Disk)
+# This way you will not reset/delete the Data on every Restart of the Container
+docker run -it --rm --name webdis-summitdb -p 7379:7379 -v "$(pwd)/data:/data" -e LOCAL_SUMMITDB=true ghcr.io/mohmadhabib/webdis
+```
+
+```bash
+# OR Use Local Redis Server Instead of SummitDB
+docker run -it --rm --name webdis-summitdb -p 7379:7379 ghcr.io/mohmadhabib/webdis # LOCAL_REDIS is true By Default
+```
+
+```bash
+# OR Use Local Redis Server Instead of SummitDB with Presistance Data
+# This way you will not reset/delete the Data on every Restart of the Container
+docker run -it --rm --name webdis-summitdb -p 7379:7379 -v "$(pwd)/data:/data" ghcr.io/mohmadhabib/webdis # LOCAL_REDIS is true By Default
+```
+
+```bash
+# OR
+docker run -it --rm --name webdis-summitdb -p 7379:7379 -e LOCAL_REDIS=true ghcr.io/mohmadhabib/webdis
+```
+
+Or Simply use [docker-compose](./compose.yml) File within this Repo
+```bash
+git clone https://github.com/mohmadhabib/webdis-summitdb && cd webdis-summitdb && docker compose up -d
+```
 
 Test Your Backend
 
