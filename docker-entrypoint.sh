@@ -23,9 +23,9 @@ start_local_redis() {
       fi
       echo >&2 "starting local redis-server.."
       if [ -n "${REDIS_OPTS}" ]; then
-        redis-server ${REDIS_OPTS} &
+        redis-server --dir /data --appendonly yes ${REDIS_OPTS} &
       else
-        redis-server --daemonize yes
+        redis-server --dir /data --appendonly yes --daemonize yes
       fi
     fi
   fi
@@ -40,9 +40,9 @@ start_local_summitdb() {
       REDIS_PORT="7481"
       echo >&2 "starting local SummitDB Server.."
       if [ -n "${SUMMITDB_OPTS}" ]; then
-        /usr/local/bin/summitdb-server ${SUMMITDB_OPTS} &
+        /usr/local/bin/summitdb-server -dir=/data ${SUMMITDB_OPTS} &
       else
-        /usr/local/bin/summitdb-server &
+        /usr/local/bin/summitdb-server -dir=/data &
       fi
     fi
   fi

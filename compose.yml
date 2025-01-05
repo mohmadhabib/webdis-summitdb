@@ -12,3 +12,7 @@ services:
       LOCAL_SUMMITDB: true  
       # For Redis as Backend
       #LOCAL_REDIS: true  
+
+    volumes:
+      # For Presistance Data (Write To Disk)
+      - ./data:/data  

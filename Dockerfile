@@ -5,6 +5,7 @@ ENV WEBDIS_REPO=https://github.com/nicolasff/webdis.git
 RUN apk add --no-cache curl tar zip unzip gzip && \
 	# Install eGet to Ease All Binaries Installations/Update
 	curl -s https://zyedidia.github.io/eget.sh | sh && mv eget /usr/local/bin/eget && \
+    mkdir -p /data && \
 	# Install/Build Webdis
 	apk add alpine-sdk libevent libevent-dev bsd-compat-headers git && \
 	git clone --depth 1 $WEBDIS_REPO /tmp/webdis && \
@@ -18,6 +19,10 @@ RUN apk add --no-cache curl tar zip unzip gzip && \
     rm -rf /var/cache/apk/*
 
 COPY docker-entrypoint.sh /entrypoint.sh
+
+WORKDIR /data
+
+VOLUME [ "/data" ]
 
 RUN chmod +x /entrypoint.sh
 
